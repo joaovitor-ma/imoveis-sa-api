@@ -1,4 +1,4 @@
-package com.sa.imoveis.DTO;
+package com.sa.imoveis.dto;
 
 public class PropertyDTO {
     private String address;
