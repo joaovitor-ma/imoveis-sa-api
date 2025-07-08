@@ -1,10 +1,13 @@
 package com.sa.imoveis.dto;
 
+import com.sa.imoveis.model.Role;
+
 public class UserDTO {
     private String name;
     private String email;
     private String password;
     private String cellphone;
+    private Role role;
 
     public String getName() {
         return name;
@@ -36,5 +39,13 @@ public class UserDTO {
 
     public void setCellphone(String cellphone) {
         this.cellphone = cellphone;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

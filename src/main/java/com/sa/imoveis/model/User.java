@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public abstract class User {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,8 +18,16 @@ public abstract class User {
     private String password;
     @Column(nullable = false)
     private String cellphone;
+    @Column(nullable = false)
+    private Role role;
     @OneToMany
     private List<Appointment> appointments;
+    // Only for COSTUMERS
+    @OneToMany
+    private List<Favorite> favorites;
+    // Only for CONSULTANTS
+    @OneToMany
+    private List<Property> properties;
 
     public Long getId() {
         return id;
@@ -61,11 +69,35 @@ public abstract class User {
         this.cellphone = cellphone;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public List<Appointment> getAppointments() {
         return appointments;
     }
 
     public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
+    }
+
+    public List<Favorite> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(List<Favorite> favorites) {
+        this.favorites = favorites;
+    }
+
+    public List<Property> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(List<Property> properties) {
+        this.properties = properties;
     }
 }

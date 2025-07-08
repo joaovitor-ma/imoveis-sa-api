@@ -9,7 +9,7 @@ public class Favorite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    private Customer customer;
+    private User customer;
     @OneToOne
     private Property property;
 

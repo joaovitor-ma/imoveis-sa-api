@@ -20,7 +20,7 @@ public class Property {
     @Column(nullable = false)
     private int addressNumber;
     @ManyToOne
-    private Consultant consultant;
+    private User consultant;
     private Double salePrice;
     private Double rentalPrice;
 }

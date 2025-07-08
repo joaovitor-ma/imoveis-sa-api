@@ -12,7 +12,7 @@ public class Appointment {
     private Long id;
     private LocalDateTime date;
     @ManyToOne
-    private Customer customer;
+    private User customer;
     @ManyToOne
-    private Consultant consultant;
+    private User consultant;
 }
