@@ -1,4 +1,4 @@
-package com.sa.imoveis.exception;
+package com.sa.imoveis.exception.message;
 
 import org.springframework.http.HttpStatus;
 
