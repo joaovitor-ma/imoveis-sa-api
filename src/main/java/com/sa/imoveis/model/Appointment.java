@@ -15,4 +15,36 @@ public class Appointment {
     private User customer;
     @ManyToOne
     private User consultant;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public User getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(User customer) {
+        this.customer = customer;
+    }
+
+    public User getConsultant() {
+        return consultant;
+    }
+
+    public void setConsultant(User consultant) {
+        this.consultant = consultant;
+    }
 }
