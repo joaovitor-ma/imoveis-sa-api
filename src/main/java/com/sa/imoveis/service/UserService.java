@@ -18,7 +18,6 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    // searchById, create, edit, delete, logIn
     public User searchById(Long id) {
         return userRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }

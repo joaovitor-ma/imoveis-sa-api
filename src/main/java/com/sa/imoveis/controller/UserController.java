@@ -5,7 +5,8 @@ import com.sa.imoveis.model.User;
 import com.sa.imoveis.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/users")
+@RestController
+@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
 

@@ -22,10 +22,10 @@ public class User {
     private Role role;
     @OneToMany
     private List<Appointment> appointments;
-    // Only for COSTUMERS
+    // Apenas para COSTUMERS
     @OneToMany
     private List<Favorite> favorites;
-    // Only for CONSULTANTS
+    // Apenas para CONSULTANTS
     @OneToMany
     private List<Property> properties;
 
