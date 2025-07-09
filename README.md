@@ -31,24 +31,21 @@ A proposta deste projeto é consolidar conhecimentos em desenvolvimento back-end
 ## Diagrama de Classes
 ```mermaid
 classDiagram
-    class Customer {
+    class User {
         -Long id
         -String name
         -String email
         -String password
         -String cellphone
-        -Favorite[] Favorites
         -Appointment[] appointments
+        -Favorite[] favorites
+        -Property[] properties
     }
 
-    class Consultant {
-        -Long id
-        -String name
-        -String email
-        -String password
-        -String cellphone
-        -Property[] properties
-        -Appointment[] appointments
+    class Role {
+        <<enumeration>>
+        CUSTOMER
+        CONSULTANT
     }
 
     class Property {
@@ -59,7 +56,7 @@ classDiagram
         -int numberOfPossibleCars
         -double landSize
         -int addressNumber
-        -Consultant consultant
+        -User consultant
         -double salePrice
         -double rentalPrice
     }
@@ -67,19 +64,20 @@ classDiagram
     class Appointment {
         -Long id
         -LocalDateTime date
-        -Customer customer
-        -Consultant consultant
+        -User customer
+        -User consultant
     }
 
     class Favorite {
         -Long id
-        -Customer customer
+        -User customer
         -Property property
     }
 
-    Consultant "1" --> "N" Property
-    Consultant "1" --> "N" Appointment
-    Customer "1" --> "N" Appointment
-    Customer "1" --> "N" Favorite
+    User --> Role : usa
+    User "1" --> "N" Property
+    User "1" --> "N" Appointment
+    User "1" --> "N" Appointment
+    User "1" --> "N" Favorite
     Favorite "1" --> "1" Property
 ```
