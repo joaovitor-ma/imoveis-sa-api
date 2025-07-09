@@ -28,18 +28,21 @@ public class UserService {
 
     public User create(UserDTO userDTO) {
         if(userRepository.findByEmail(userDTO.getEmail()).isPresent()) throw new EmailAlreadyExistsException();
-        User userToCreate = mapper.map(userDTO, User.class);
-        return userRepository.save(userToCreate);
+        return saveUser(null, userDTO);
     }
 
     public User edit(Long id, UserDTO userDTO) {
         searchById(id);
-        User userBody = mapper.map(userDTO, User.class);
-        userBody.setId(id);
-        return userRepository.save(userBody);
+        return saveUser(id, userDTO);
     }
 
     public void delete(Long id) {
         userRepository.deleteById(id);
+    }
+
+    private User saveUser(Long id, UserDTO userDTO) {
+        User userBody = mapper.map(userDTO, User.class);
+        userBody.setId(id);
+        return userRepository.save(userBody);
     }
 }

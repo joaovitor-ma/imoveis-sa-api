@@ -16,6 +16,8 @@ public class PropertyService {
     private final UserService userService;
     private final ModelMapper mapper = new ModelMapper();
 
+    // TODO: Para o futuro: prever possíveis erros e criar tratamento adequado para eles
+
     private PropertyService(PropertyRepository propertyRepository, UserService userService) {
         this.propertyRepository = propertyRepository;
         this.userService = userService;
