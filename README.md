@@ -37,6 +37,7 @@ classDiagram
         -String email
         -String password
         -String cellphone
+        -Role role
         -Appointment[] appointments
         -Favorite[] favorites
         -Property[] properties
