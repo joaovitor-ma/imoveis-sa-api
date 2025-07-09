@@ -1,6 +1,7 @@
 package com.sa.imoveis.service;
 
 import com.sa.imoveis.dto.UserDTO;
+import com.sa.imoveis.exception.custom.EmailAlreadyExistsException;
 import com.sa.imoveis.model.User;
 import com.sa.imoveis.repository.UserRepository;
 import org.modelmapper.ModelMapper;
@@ -22,11 +23,12 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
 
-//    public User logIn(String email, String password) {
-//        return userRepository.logIn(email, password);
-//    }
+    public User logIn(String email, String password) {
+        return userRepository.findByEmailAndPassword(email, password);
+    }
 
     public User create(UserDTO userDTO) {
+        if(userRepository.findByEmail(userDTO.getEmail()).isPresent()) throw new EmailAlreadyExistsException();
         User userToCreate = mapper.map(userDTO, User.class);
         return userRepository.save(userToCreate);
     }

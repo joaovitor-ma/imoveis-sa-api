@@ -3,7 +3,6 @@ package com.sa.imoveis.controller;
 import com.sa.imoveis.dto.UserDTO;
 import com.sa.imoveis.model.User;
 import com.sa.imoveis.service.UserService;
-import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;
 
 @RestController("/users")
@@ -17,6 +16,11 @@ public class UserController {
     @GetMapping("/{id}")
     public User searchById(@PathVariable Long id) {
         return userService.searchById(id);
+    }
+
+    @GetMapping("/login")
+    public User logIn(@RequestParam String email, @RequestParam String password) {
+        return userService.logIn(email, password);
     }
 
     @PostMapping
