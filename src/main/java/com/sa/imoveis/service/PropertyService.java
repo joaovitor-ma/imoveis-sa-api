@@ -41,14 +41,31 @@ public class PropertyService {
     }
 
     public void delete(Long id) {
+        Property property = findById(id);
+        User user = userService.searchById(property.getConsultantId()); // Busca o usuário pelo customerId passado
+
+        user.setProperties(
+                user
+                        .getProperties() // Puxa a lista de favoritos
+                        .stream()
+                        .filter(p -> !p.getId().equals(id)) // Filtra para deixar apenas os imóveis que tiverem o ID diferente de propertyId
+                        .toList() // Transforma em uma lista
+        );
+
         propertyRepository.deleteById(id);
     }
 
     private Property saveProperty(Long id, PropertyDTO propertyDTO) {
-        User consultant = userService.searchById(propertyDTO.getConsultantID()); // busca o consultor com o id passado no body
-        Property propertyBody = mapper.map(propertyDTO, Property.class); // mapea propertyDTO e transforma ele em um Property
-        propertyBody.setId(id); // define o id tanto quando é null quanto quando está definido
-        propertyBody.setConsultant(consultant); // vincula o consultor buscado anteriormente ao imóvel
-        return propertyRepository.save(propertyBody); // salva o imóvel no banco
+        Long consultantID = propertyDTO.getConsultantID();
+
+        User consultant = userService.searchById(consultantID); // Busca o consultor com o id passado no body
+        Property propertyBody = mapper.map(propertyDTO, Property.class); // Mapea propertyDTO e transforma ele em um Property
+
+        propertyBody.setId(id); // Define o id tanto quando é null quanto quando está definido
+        propertyBody.setConsultantId(consultantID); // Vincula o ID do consultor buscado anteriormente ao imóvel
+
+        consultant.getProperties().add(propertyBody); // Vincula o imóvel às propriedades do consultor
+
+        return propertyRepository.save(propertyBody); // Salva o imóvel no banco
     }
 }

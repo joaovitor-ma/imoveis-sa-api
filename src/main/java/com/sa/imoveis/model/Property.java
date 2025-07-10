@@ -19,8 +19,7 @@ public class Property {
     private double landSize;
     @Column(nullable = false)
     private int addressNumber;
-    @ManyToOne
-    private User consultant;
+    private Long consultantId;
     private Double salePrice;
     private Double rentalPrice;
 
@@ -80,12 +79,12 @@ public class Property {
         this.addressNumber = addressNumber;
     }
 
-    public User getConsultant() {
-        return consultant;
+    public Long getConsultantId() {
+        return consultantId;
     }
 
-    public void setConsultant(User consultant) {
-        this.consultant = consultant;
+    public void setConsultantId(Long consultant) {
+        this.consultantId = consultant;
     }
 
     public Double getSalePrice() {
