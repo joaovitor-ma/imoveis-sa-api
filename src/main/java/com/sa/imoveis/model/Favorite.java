@@ -13,6 +13,9 @@ public class Favorite {
     @OneToOne
     private Property property;
 
+    public Favorite() {
+    }
+
     public Long getId() {
         return id;
     }

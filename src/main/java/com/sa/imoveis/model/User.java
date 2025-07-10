@@ -24,7 +24,7 @@ public class User {
     private List<Appointment> appointments;
     // Apenas para COSTUMERS
     @OneToMany
-    private List<Favorite> favorites;
+    private List<Property> favorites;
     // Apenas para CONSULTANTS
     @OneToMany
     private List<Property> properties;
@@ -85,11 +85,11 @@ public class User {
         this.appointments = appointments;
     }
 
-    public List<Favorite> getFavorites() {
+    public List<Property> getFavorites() {
         return favorites;
     }
 
-    public void setFavorites(List<Favorite> favorites) {
+    public void setFavorites(List<Property> favorites) {
         this.favorites = favorites;
     }
 
