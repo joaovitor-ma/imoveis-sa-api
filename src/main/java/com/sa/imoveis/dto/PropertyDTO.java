@@ -7,7 +7,7 @@ public class PropertyDTO {
     private int numberOfPossibleCars;
     private double landSize;
     private int addressNumber;
-    private Long consultantID;
+    private Long consultantId;
     private Double salePrice;
     private Double rentalPrice;
 
@@ -59,12 +59,12 @@ public class PropertyDTO {
         this.addressNumber = addressNumber;
     }
 
-    public Long getConsultantID() {
-        return consultantID;
+    public Long getConsultantId() {
+        return consultantId;
     }
 
-    public void setConsultantID(Long consultantID) {
-        this.consultantID = consultantID;
+    public void setConsultantId(Long consultantID) {
+        this.consultantId = consultantID;
     }
 
     public Double getSalePrice() {

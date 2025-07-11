@@ -56,15 +56,16 @@ public class PropertyService {
     }
 
     private Property saveProperty(Long id, PropertyDTO propertyDTO) {
-        Long consultantID = propertyDTO.getConsultantID();
+        Long consultantID = propertyDTO.getConsultantId();
 
         User consultant = userService.searchById(consultantID); // Busca o consultor com o id passado no body
         Property propertyBody = mapper.map(propertyDTO, Property.class); // Mapea propertyDTO e transforma ele em um Property
 
         propertyBody.setId(id); // Define o id tanto quando é null quanto quando está definido
-        propertyBody.setConsultantId(consultantID); // Vincula o ID do consultor buscado anteriormente ao imóvel
 
-        consultant.getProperties().add(propertyBody); // Vincula o imóvel às propriedades do consultor
+        if(id == null) {
+            consultant.getProperties().add(propertyBody); // Vincula o imóvel às propriedades do consultor
+        }
 
         return propertyRepository.save(propertyBody); // Salva o imóvel no banco
     }
