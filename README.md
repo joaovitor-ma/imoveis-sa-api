@@ -39,7 +39,7 @@ classDiagram
         -String cellphone
         -Role role
         -Appointment[] appointments
-        -Favorite[] favorites
+        -Property[] favorites
         -Property[] properties
     }
 
@@ -57,7 +57,7 @@ classDiagram
         -int numberOfPossibleCars
         -double landSize
         -int addressNumber
-        -User consultant
+        -Long consultantId
         -double salePrice
         -double rentalPrice
     }
@@ -65,8 +65,8 @@ classDiagram
     class Appointment {
         -Long id
         -LocalDateTime date
-        -User customer
-        -User consultant
+        -Long customerId
+        -Long consultantId
     }
 
     class Favorite {
