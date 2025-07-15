@@ -19,7 +19,7 @@ public class UserService {
     }
 
     public User searchById(Long id) {
-        return userRepository.findById(id).orElseThrow(NoSuchElementException::new);
+        return userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("The user with this ID do not exist."));
     }
 
     public User logIn(String email, String password) {
@@ -27,7 +27,7 @@ public class UserService {
     }
 
     public User create(UserDTO userDTO) {
-        if(userRepository.findByEmail(userDTO.getEmail()).isPresent()) throw new EmailAlreadyExistsException();
+        if(userRepository.findByEmail(userDTO.getEmail()).isPresent()) throw new EmailAlreadyExistsException("This email is already in use.");
         return saveUser(null, userDTO);
     }
 

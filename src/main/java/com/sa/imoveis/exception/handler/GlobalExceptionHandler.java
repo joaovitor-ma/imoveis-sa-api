@@ -1,6 +1,7 @@
 package com.sa.imoveis.exception.handler;
 
 import com.sa.imoveis.exception.custom.EmailAlreadyExistsException;
+import com.sa.imoveis.exception.custom.InvalidDateException;
 import com.sa.imoveis.exception.message.ExceptionMessage;
 import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.http.HttpStatus;
@@ -16,12 +17,17 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<ExceptionMessage> handleNoSuchElementException(NoSuchElementException ex) {
-        return exceptionThrower(HttpStatus.NOT_FOUND, "This id could not be found.");
+        return exceptionThrower(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
     @ExceptionHandler(EmailAlreadyExistsException.class)
     public ResponseEntity<ExceptionMessage> handleEmailALreadyExistsException(EmailAlreadyExistsException ex) {
-        return exceptionThrower(HttpStatus.CONFLICT, "This email is already in use.");
+        return exceptionThrower(HttpStatus.CONFLICT, ex.getMessage());
+    }
+
+    @ExceptionHandler(InvalidDateException.class)
+    public ResponseEntity<ExceptionMessage> handleInvalidDateException(EmailAlreadyExistsException ex) {
+        return exceptionThrower(HttpStatus.BAD_REQUEST, ex.getMessage());
     }
 
     private ResponseEntity<ExceptionMessage> exceptionThrower(HttpStatus status, String message) {

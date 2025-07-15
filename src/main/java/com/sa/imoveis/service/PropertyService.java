@@ -28,7 +28,7 @@ public class PropertyService {
     }
 
     public Property findById(Long id) {
-        return propertyRepository.findById(id).orElseThrow(NoSuchElementException::new);
+        return propertyRepository.findById(id).orElseThrow(() -> new NoSuchElementException("The property with this ID do not exist."));
     }
 
     public Property create(PropertyDTO propertyDTO) {
