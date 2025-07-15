@@ -26,7 +26,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(InvalidDateException.class)
-    public ResponseEntity<ExceptionMessage> handleInvalidDateException(EmailAlreadyExistsException ex) {
+    public ResponseEntity<ExceptionMessage> handleInvalidDateException(InvalidDateException ex) {
         return exceptionThrower(HttpStatus.BAD_REQUEST, ex.getMessage());
     }
 

@@ -36,6 +36,11 @@ public class UserService {
         return saveUser(id, userDTO);
     }
 
+    public User updateWholeUser(User user) {
+        searchById(user.getId());
+        return userRepository.save(user);
+    }
+
     public void delete(Long id) {
         userRepository.deleteById(id);
     }

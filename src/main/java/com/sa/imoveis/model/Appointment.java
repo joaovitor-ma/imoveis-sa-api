@@ -12,9 +12,16 @@ public class Appointment {
     private Long id;
     private LocalDateTime date;
     @ManyToOne
+    @JoinColumn(name = "customer_id")
     private User customer;
     @ManyToOne
+    @JoinColumn(name = "consultant_id")
     private User consultant;
+    @ManyToOne
+    private Property property;
+
+    public Appointment() {
+    }
 
     public Long getId() {
         return id;
@@ -46,5 +53,13 @@ public class Appointment {
 
     public void setConsultant(User consultant) {
         this.consultant = consultant;
+    }
+
+    public Property getProperty() {
+        return property;
+    }
+
+    public void setProperty(Property property) {
+        this.property = property;
     }
 }

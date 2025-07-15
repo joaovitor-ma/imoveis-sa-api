@@ -2,6 +2,7 @@ package com.sa.imoveis.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,8 +21,7 @@ public class User {
     private String cellphone;
     @Column(nullable = false)
     private Role role;
-    @OneToMany
-    private List<Appointment> appointments;
+    private List<Long> appointments = new ArrayList<>();
     // Apenas para COSTUMERS
     @OneToMany
     private List<Property> favorites;
@@ -77,11 +77,11 @@ public class User {
         this.role = role;
     }
 
-    public List<Appointment> getAppointments() {
+    public List<Long> getAppointments() {
         return appointments;
     }
 
-    public void setAppointments(List<Appointment> appointments) {
+    public void setAppointments(List<Long> appointments) {
         this.appointments = appointments;
     }
 
