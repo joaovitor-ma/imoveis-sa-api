@@ -22,17 +22,18 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("The user with this ID do not exist."));
     }
 
-    public User logIn(String email, String password) {
-        return userRepository.findByEmailAndPassword(email, password);
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email).get();
     }
 
     public User create(UserDTO userDTO) {
-        if(userRepository.findByEmail(userDTO.getEmail()).isPresent()) throw new EmailAlreadyExistsException("This email is already in use.");
+        if(checkEmail(userDTO.getEmail())) throw new EmailAlreadyExistsException("This email is already in use.");
         return saveUser(null, userDTO);
     }
 
     public User edit(Long id, UserDTO userDTO) {
         searchById(id);
+        if(checkEmail(userDTO.getEmail())) throw new EmailAlreadyExistsException("This email is already in use.");
         return saveUser(id, userDTO);
     }
 
@@ -49,5 +50,9 @@ public class UserService {
         User userBody = mapper.map(userDTO, User.class);
         userBody.setId(id);
         return userRepository.save(userBody);
+    }
+
+    private boolean checkEmail(String email) {
+        return userRepository.findByEmail(email).isPresent();
     }
 }

@@ -19,16 +19,6 @@ public class UserController {
         return userService.searchById(id);
     }
 
-    @GetMapping("/login")
-    public User logIn(@RequestParam String email, @RequestParam String password) {
-        return userService.logIn(email, password);
-    }
-
-    @PostMapping
-    public User create(@RequestBody UserDTO userDTO) {
-        return userService.create(userDTO);
-    }
-
     @PutMapping("/{id}")
     public User edit(@PathVariable("id") Long id, @RequestBody UserDTO userDTO) {
         return userService.edit(id, userDTO);
