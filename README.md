@@ -8,18 +8,23 @@ Este projeto é uma reimplementação de um sistema fictício desenvolvido anter
 - Spring Boot
 - JPA + Hibernate
 - PostgreSQL em Container Docker
+### Em breve
 - Spring Security + JWT
+### Em breve
 - JUnit (testes unitários)
 
 ## 🧩 Funcionalidades
 
 - Cadastro, edição e remoção de imóveis
 - Listagem pública de imóveis
-- Cadastro de usuários
-- Login e autenticação com JWT
-- Sistema de permissões (consultores/admins têm acesso a rotas restritas)
 - Funcionalidade de favoritos
 - Agendamento de visitas
+### Em breve
+- Cadastro de usuários com senha criptografada
+### Em breve
+- Login e autenticação com JWT
+### Em breve
+- Sistema de permissões (consultores/admins têm acesso a rotas restritas)
 
 ## 🎯 Objetivo
 
