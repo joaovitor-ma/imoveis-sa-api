@@ -1,16 +1,15 @@
-FROM ubuntu:latest AS build
+FROM gradle:jdk17 AS build
 
-RUN apt-get update
-RUN apt-get install openjdk-17-jdk -y
-COPY . .
+WORKDIR /app
 
-RUN apt-get install gradlew -y
-RUN gradlew build
+COPY . /app
+
+RUN gradle build
 
 FROM openjdk:17-jdk-slim
 
 EXPOSE 8080
 
-COPY --from=build /build/libs/api-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build ./app/build/libs/api-0.0.1-SNAPSHOT.jar ./app/app.jar
 
-ENTRYPOINT ["java", "-jar", "./app.jar"]
+ENTRYPOINT ["java", "-jar", "./app/app.jar"]
